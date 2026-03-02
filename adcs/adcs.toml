@@ -1,0 +1,115 @@
+# ADCS Configuration — Phobos Sample Return
+# 3-axis stabilized, reaction wheel primary with RCS backup
+# Modes: science, telecom, TAG, safe
+
+# --------------------------------------------------------------------------
+# Attitude Determination Sensors
+# --------------------------------------------------------------------------
+
+[star_tracker]
+name = "Sodern Hydra-class"
+number = 2                                       # Mounted >= 90 deg apart for roll resolution
+accuracy_cross_boresight = "2 arcsec"            # 1-sigma per axis
+accuracy_roll = "10 arcsec"                      # 1-sigma about boresight
+fov = "20 deg"                                   # Circular
+update_rate = "4 Hz"
+max_tracking_rate = "2 deg/s"
+sun_exclusion_angle = "30 deg"
+mass_each = "2.5 kg"                             # Optical head + electronics
+power_each = "6 W"
+
+[sun_sensor]
+name = "Coarse sun sensor array"
+type = "coarse"
+number = 8                                       # Full 4-pi coverage for safe mode
+accuracy = "3 deg"                               # 1-sigma, sufficient for safe mode sun-pointing
+fov_each = "hemisphere"
+mass_each = "0.03 kg"
+power_each = "0 W"                               # Passive analog sensors, negligible power
+
+[imu]
+name = "Northrop Grumman LN-200S-class FOG"
+type = "fiber-optic gyro"
+number_of_axes = 3
+drift_rate = "1 deg/hr"                          # Bias stability, 1-sigma
+angle_random_walk = "0.07 deg/hr"                # White noise
+scale_factor_accuracy = "100 ppm"
+mass = "0.75 kg"
+power = "12 W"
+
+# --------------------------------------------------------------------------
+# Attitude Control Actuators
+# --------------------------------------------------------------------------
+
+[reaction_wheels]
+name = "Collins RSI 12-class"
+number = 4                                       # Pyramid configuration, 3-for-4 redundancy
+pyramid_cant_angle = "54.7 deg"                  # Uniform momentum envelope
+momentum_capacity_each = "12 N*m*s"
+max_torque_each = "0.075 N*m"
+mass_each = "5.5 kg"
+power_each = "28 W"                              # At max torque; nominal ~10 W
+wheel_speed_range = "6000 rev/min"               # +/- range
+zero_crossing_avoidance = true                   # Prevents flat-spot torque noise
+
+[rcs_backup]
+# RCS thrusters defined in propulsion/rcs.yaml (12x MR-111C class, 4 N each)
+# Provides:
+#   - Reaction wheel momentum desaturation
+#   - Backup 3-axis attitude control (safe mode, contingency)
+#   - Fine translation control for TAG approach
+momentum_dump_interval = "48 hr"                 # Nominal dump cadence in Mars orbit
+
+# --------------------------------------------------------------------------
+# Pointing Requirements by Mode
+# --------------------------------------------------------------------------
+
+[pointing.science]
+description = "WAC imaging and GRNS mapping from QSO"
+pointing_accuracy = "60 arcsec"                  # 3-sigma, 1 arcmin per axis
+pointing_knowledge = "10 arcsec"                 # 3-sigma, post-processing with star tracker
+pointing_stability = "5 arcsec"                  # Over 1 s exposure, per axis
+primary_sensors = ["star_tracker", "imu"]
+primary_actuators = ["reaction_wheels"]
+
+[pointing.telecom]
+description = "HGA Earth-pointing for high-rate downlink"
+pointing_accuracy = "0.15 deg"                   # 3-sigma, driven by HGA 3-dB beamwidth
+primary_sensors = ["star_tracker", "imu"]
+primary_actuators = ["reaction_wheels"]
+
+[pointing.tag]
+description = "Touch-and-go descent and sampling at Phobos"
+pointing_accuracy = "2 arcmin"                   # 3-sigma, body Z toward surface
+pointing_knowledge = "30 arcsec"                 # 3-sigma, for post-recon position determination
+primary_sensors = ["star_tracker", "imu"]
+primary_actuators = ["reaction_wheels", "rcs"]
+
+[pointing.safe]
+description = "Sun-pointing survival mode with LGA downlink"
+pointing_accuracy = "5 deg"                      # 3-sigma, keeps solar arrays illuminated
+primary_sensors = ["sun_sensor", "imu"]
+primary_actuators = ["rcs"]
+antenna = "LGA"
+
+# --------------------------------------------------------------------------
+# Subsystem Mass and Power Roll-Up
+# --------------------------------------------------------------------------
+
+[mass_summary]
+star_trackers = "5.0 kg"                         # 2 x 2.5 kg
+sun_sensors = "0.24 kg"                          # 8 x 0.03 kg
+imu = "0.75 kg"
+reaction_wheels = "22.0 kg"                      # 4 x 5.5 kg
+adcs_electronics = "3.0 kg"                      # ACS processor, power distribution
+harness = "2.0 kg"
+total_dry = "33.0 kg"                            # Excludes RCS hardware (in propulsion)
+
+[power_summary]
+star_trackers = "12 W"                           # 2 x 6 W
+imu = "12 W"
+reaction_wheels_nominal = "40 W"                 # 4 wheels at cruise speed
+reaction_wheels_peak = "112 W"                   # 4 wheels at max torque (slew)
+adcs_electronics = "8 W"
+total_nominal = "72 W"
+total_peak = "144 W"

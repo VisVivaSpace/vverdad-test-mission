@@ -1,0 +1,70 @@
+# Phobos Sample Return — Mission Overview
+# CML-4 point design
+
+mission_name: "Phobos Sample Return (PhSR)"
+mission_class: "New Frontiers-class"
+lead_agency: "NASA"
+international_partners:
+  - "JAXA (heritage from MMX)"
+
+science_objectives:
+  - id: "SO-1"
+    description: "Determine the elemental and mineralogical composition of the Phobos surface"
+    instruments: ["WAC", "GRNS"]
+  - id: "SO-2"
+    description: "Return a sample of Phobos regolith for laboratory analysis on Earth"
+    instruments: ["sample_system"]
+  - id: "SO-3"
+    description: "Characterize the surface morphology and geology of Phobos at sub-meter resolution"
+    instruments: ["WAC"]
+
+instruments:
+  - id: "WAC"
+    name: "Wide-Angle Camera"
+    type: "remote_sensing"
+    description: "Panchromatic and multi-band imaging of Phobos surface"
+  - id: "GRNS"
+    name: "Gamma-Ray and Neutron Spectrometer"
+    type: "remote_sensing"
+    description: "Elemental surface composition mapping via gamma-ray and neutron emissions"
+  - id: "sample_system"
+    name: "Harpoon Touch-and-Go Sampler"
+    type: "in_situ"
+    description: "Pneumatic harpoon deployed during TAG maneuver to collect regolith"
+
+mission_phases:
+  - id: "launch"
+    name: "Launch and Earth Departure"
+    description: "Falcon Heavy expendable launch, direct injection to Mars transfer"
+  - id: "cruise"
+    name: "Interplanetary Cruise"
+    description: "Ballistic Earth-to-Mars transfer with TCMs"
+  - id: "moi"
+    name: "Mars Orbit Insertion"
+    description: "Bipropellant main engine burn to capture into high Mars orbit"
+  - id: "phobos_transfer"
+    name: "Phobos Proximity Operations"
+    description: "Transfer from capture orbit to Phobos quasi-satellite orbit (QSO)"
+  - id: "science_mapping"
+    name: "Science Mapping"
+    description: "WAC imaging and GRNS composition mapping from QSO"
+  - id: "tag"
+    name: "TAG Sample Collection"
+    description: "Descent from QSO, harpoon-based touch-and-go sample acquisition"
+  - id: "phobos_departure"
+    name: "Phobos Departure"
+    description: "Escape Phobos QSO and depart Mars system"
+  - id: "earth_return"
+    name: "Earth Return Cruise"
+    description: "Ballistic Mars-to-Earth transfer"
+  - id: "gateway_rendezvous"
+    name: "Gateway Rendezvous"
+    description: "Lunar approach, NRHO insertion, and rendezvous with Gateway station for sample handoff"
+
+mission_architecture:
+  transfer_type: "direct ballistic (Type I)"
+  propulsion: "bipropellant chemical"
+  sample_collection_method: "harpoon touch-and-go (TAG)"
+  earth_return_method: "Gateway station capture (no aeroshell)"
+  gravity_assists: "none"
+  solar_electric_propulsion: false

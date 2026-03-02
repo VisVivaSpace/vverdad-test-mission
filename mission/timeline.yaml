@@ -1,0 +1,75 @@
+# Phobos Sample Return — Mission Timeline
+# All epochs in UTC. Durations in recognized VVERDAD units.
+# Based on 2035 Earth-Mars launch opportunity (Type I transfer).
+
+phases:
+  launch:
+    name: "Launch and Earth Departure"
+    start: "2035-09-15T00:00:00 UTC"
+    end: "2035-09-15T06:00:00 UTC"
+    duration: "6 hr"
+    notes: "Falcon Heavy expendable, direct injection"
+
+  cruise:
+    name: "Interplanetary Cruise"
+    start: "2035-09-15T06:00:00 UTC"
+    end: "2036-04-18T00:00:00 UTC"
+    duration: "215 d"
+    notes: "Ballistic transfer, 2-4 TCMs planned"
+
+  moi:
+    name: "Mars Orbit Insertion"
+    start: "2036-04-18T00:00:00 UTC"
+    end: "2036-04-18T01:00:00 UTC"
+    duration: "1 hr"
+    notes: "Main engine burn for Mars capture into 500 x 40000 km orbit"
+
+  phobos_transfer:
+    name: "Phobos Proximity Operations"
+    start: "2036-04-18T01:00:00 UTC"
+    end: "2036-07-18T00:00:00 UTC"
+    duration: "91 d"
+    notes: "Orbit lowering and transfer to Phobos QSO (~50 km altitude)"
+
+  science_mapping:
+    name: "Science Mapping"
+    start: "2036-07-18T00:00:00 UTC"
+    end: "2037-04-18T00:00:00 UTC"
+    duration: "274 d"
+    notes: "WAC imaging, GRNS composition mapping from QSO"
+
+  tag:
+    name: "TAG Sample Collection"
+    start: "2037-04-18T00:00:00 UTC"
+    end: "2037-05-18T00:00:00 UTC"
+    duration: "30 d"
+    notes: "Descent, TAG rehearsals, up to 3 sample collection attempts"
+
+  phobos_departure:
+    name: "Phobos Departure"
+    start: "2037-05-18T00:00:00 UTC"
+    end: "2037-10-15T00:00:00 UTC"
+    duration: "150 d"
+    notes: "QSO escape, Mars escape, wait for Earth return window"
+
+  earth_return:
+    name: "Earth Return Cruise"
+    start: "2037-10-15T00:00:00 UTC"
+    end: "2038-09-10T00:00:00 UTC"
+    duration: "331 d"
+    notes: "Ballistic Mars-to-Earth transfer"
+
+  gateway_rendezvous:
+    name: "Gateway Rendezvous"
+    start: "2038-09-10T00:00:00 UTC"
+    end: "2038-09-17T00:00:00 UTC"
+    duration: "7 d"
+    notes: "Lunar NRHO insertion, proximity approach, docking with Gateway"
+
+summary:
+  total_mission_duration: "1098 d"
+  outbound_duration: "215 d"
+  mars_operations_duration: "395 d"
+  return_duration: "338 d"
+  launch_epoch: "2035-09-15T00:00:00 UTC"
+  end_of_mission_epoch: "2038-09-17T00:00:00 UTC"

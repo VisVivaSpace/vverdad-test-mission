@@ -1,0 +1,46 @@
+{
+    "description": "Phobos Sample Return telecom transponder and amplifier — SDST with TWTA",
+
+    "transponder": {
+        "name": "Small Deep Space Transponder (SDST)",
+        "manufacturer": "General Dynamics",
+        "uplink_band": "X-band",
+        "uplink_frequency": "7.167 GHz",
+        "downlink_band": "X-band",
+        "downlink_frequency": "8.425 GHz",
+        "turnaround_ratio": "880/749",
+        "receiver_sensitivity": "-156 dBm",
+        "modulation": "BPSK on residual carrier / suppressed carrier",
+        "coding": "turbo code rate 1/2, CCSDS 131.0",
+        "required_eb_n0": "1.0 dB",
+        "mass": "3.2 kg",
+        "dc_power": "15 W",
+        "heritage": "MRO, Juno, OSIRIS-REx, Psyche, Europa Clipper"
+    },
+
+    "amplifier": {
+        "name": "X-band TWTA",
+        "type": "traveling_wave_tube_amplifier",
+        "rf_output_power": "25 W",
+        "dc_to_rf_efficiency": 0.45,
+        "dc_power": "56 W",
+        "mass": "3.0 kg",
+        "heritage": "Juno TWTA class"
+    },
+
+    "selectable_data_rates": [
+        "10 bps",
+        "40 bps",
+        "200 bps",
+        "1.0 kbps",
+        "5.0 kbps",
+        "25.0 kbps",
+        "100.0 kbps",
+        "500.0 kbps",
+        "2.0 Mbps"
+    ],
+
+    "redundancy": "block-redundant (2x SDST, 2x TWTA, cross-strapped)",
+    "total_mass_per_string": "6.2 kg",
+    "total_dc_power_per_string": "71 W"
+}

@@ -1,0 +1,116 @@
+# Delta-V Budget — Phobos Sample Return Mission
+# All values at spacecraft level. Earth departure C3 provided by launch vehicle.
+# Margins per AIAA S-120A: deterministic +5%, statistical +25% (99th percentile).
+# MEV = Maximum Expected Value (nominal + margin).
+
+budget:
+
+  # --- Outbound leg ---
+
+  deep_space_maneuvers_outbound:
+    description: "TCMs and trajectory corrections, Earth to Mars"
+    category: "statistical"
+    nominal: "25 m/s"
+    margin: "25 %"
+    mev: "31 m/s"
+
+  mars_orbit_insertion:
+    description: "Hyperbolic capture into Mars elliptical orbit"
+    category: "deterministic"
+    nominal: "1050 m/s"
+    margin: "5 %"
+    mev: "1103 m/s"
+
+  orbit_circularization:
+    description: "Reduce elliptical orbit to near-circular at Phobos altitude"
+    category: "deterministic"
+    nominal: "250 m/s"
+    margin: "5 %"
+    mev: "263 m/s"
+
+  transfer_to_phobos_qso:
+    description: "Transfer from parking orbit to Phobos quasi-satellite orbit"
+    category: "deterministic"
+    nominal: "45 m/s"
+    margin: "5 %"
+    mev: "47 m/s"
+
+  # --- Phobos proximity operations ---
+
+  phobos_proximity_ops:
+    description: "QSO maintenance, observation orbit changes, and station-keeping"
+    category: "statistical"
+    nominal: "20 m/s"
+    margin: "25 %"
+    mev: "25 m/s"
+
+  tag_maneuvers:
+    description: "Descent, TAG approach, ascent, and abort capability (up to 2 attempts)"
+    category: "statistical"
+    nominal: "35 m/s"
+    margin: "25 %"
+    mev: "44 m/s"
+
+  # --- Return leg ---
+
+  phobos_departure:
+    description: "Depart Phobos QSO to Mars departure orbit"
+    category: "deterministic"
+    nominal: "45 m/s"
+    margin: "5 %"
+    mev: "47 m/s"
+
+  earth_return_injection:
+    description: "Trans-Earth injection from Mars orbit"
+    category: "deterministic"
+    nominal: "1150 m/s"
+    margin: "5 %"
+    mev: "1208 m/s"
+
+  deep_space_maneuvers_return:
+    description: "TCMs and trajectory corrections, Mars to Earth"
+    category: "statistical"
+    nominal: "20 m/s"
+    margin: "25 %"
+    mev: "25 m/s"
+
+  gateway_rendezvous:
+    description: "Approach, phasing, and terminal rendezvous with lunar Gateway (NRHO)"
+    category: "statistical"
+    nominal: "30 m/s"
+    margin: "25 %"
+    mev: "38 m/s"
+
+# --- Subtotals and mission total ---
+
+subtotals:
+
+  deterministic:
+    description: "Sum of all deterministic maneuvers (MOI, circularization, QSO transfer, departure, TEI)"
+    nominal: "2540 m/s"
+    mev: "2668 m/s"
+
+  statistical:
+    description: "Sum of all statistical maneuvers (TCMs, prox ops, TAG, rendezvous)"
+    nominal: "130 m/s"
+    mev: "163 m/s"
+
+mission_total:
+  description: "Total mission delta-V"
+  nominal: "2670 m/s"
+  mev: "2831 m/s"
+
+propulsion_allocation:
+  main_engine_dv: "2668 m/s"
+  rcs_dv: "163 m/s"
+
+notes: >
+  Earth departure C3 is provided by the launch vehicle (not included in
+  spacecraft delta-V budget). Mars orbit insertion is the single largest
+  maneuver and is sized for a Type I ballistic transfer with arrival
+  V-infinity of approximately 2.5 km/s. Earth return injection is similarly
+  large due to the Mars departure hyperbolic excess velocity requirement.
+  TAG maneuvers include propellant for two full descent/ascent cycles plus
+  abort capability. Gateway rendezvous includes NRHO phasing and terminal
+  approach. All deterministic maneuvers executed by the bipropellant main
+  engine; all statistical maneuvers executed by the monopropellant RCS.

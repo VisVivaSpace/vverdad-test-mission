@@ -1,0 +1,14 @@
+{
+  "name": "Harpoon Touch-and-Go Sampler",
+  "type": "Harpoon Touch-and-Go",
+  "harpoon_penetration_depth": "5 cm",
+  "sample_mass_target": "50 g",
+  "tag_contact_duration": "5 s",
+  "tag_descent_velocity": "0.1 m/s",
+  "mechanism_mass": "12 kg",
+  "deployment_power": "40 W",
+  "num_sample_attempts": 2,
+  "sample_container_mass": "3 kg",
+  "return_capsule_diameter": "0.4 m",
+  "heritage": "Hayabusa2 TAG operations, MMX C-SMP/P-SMP sampling, Deep Space 2 penetrator"
+}

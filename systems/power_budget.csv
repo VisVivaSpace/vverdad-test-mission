@@ -1,0 +1,19 @@
+subsystem,component,cruise_w,science_w,comms_w,tag_w,safe_w
+C&DH,Flight Computer (active),18,18,18,18,18
+C&DH,Flight Computer (standby),2,2,2,2,2
+ADCS,Star Trackers (2x),12,12,12,12,0
+ADCS,IMU,12,12,12,12,12
+ADCS,Reaction Wheels (4x),40,40,40,112,0
+ADCS,ADCS Electronics,8,8,8,8,0
+ADCS,Sun Sensors (8x),0,0,0,0,0
+Telecom,SDST,15,15,15,15,15
+Telecom,TWTA,0,56,56,56,0
+Mechanisms,HGA Gimbal,0,12,12,0,0
+Payload,Wide-Angle Camera,0,12,0,0,0
+Payload,GRNS,0,15,0,0,0
+Payload,Sample System,0,0,0,40,0
+Mechanisms,Sample Transfer,0,0,0,15,0
+Propulsion,RCS Catalyst Bed Heaters,0,0,0,9,0
+Thermal,Heaters,60,40,40,40,120
+,,,,,,
+Total,,167,242,215,339,167

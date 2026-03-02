@@ -1,0 +1,94 @@
+# Power Modes Definition — Phobos Sample Return
+# Defines operational modes, active subsystems, duty cycles, and durations.
+
+modes:
+
+  cruise:
+    description: "Quiescent interplanetary transit; C&DH active, ADCS in wheel-control, SDST receive-only, survival heaters"
+    total_power: "167 W"
+    active_subsystems:
+      - "C&DH (primary + standby keep-alive)"
+      - "ADCS (star trackers, IMU, reaction wheels nominal, electronics)"
+      - "Telecom (SDST receive and carrier only, no TWTA)"
+      - "Thermal (heaters at nominal cruise level)"
+    inactive_subsystems:
+      - "Payload (camera, GRNS, sample system)"
+      - "Telecom TWTA (activated only for scheduled DSN passes)"
+      - "HGA gimbal (MGA body-fixed used for cruise contacts)"
+      - "Propulsion heaters"
+    duty_cycle: "100 %"
+    typical_duration: "24 hr"
+    notes: "TWTA activated for approximately 8 hr per day during DSN contacts, adding 56 W during those windows"
+
+  science_mapping:
+    description: "Phobos observation from QSO; camera and GRNS active, HGA downlink, full ADCS"
+    total_power: "242 W"
+    active_subsystems:
+      - "C&DH (primary + standby keep-alive)"
+      - "ADCS (star trackers, IMU, reaction wheels nominal, electronics)"
+      - "Telecom (SDST + TWTA via HGA)"
+      - "HGA gimbal (Earth-pointing)"
+      - "Payload camera (WAC imaging)"
+      - "Payload GRNS (gamma-ray and neutron spectrometry)"
+      - "Thermal (heaters at reduced level, instruments dissipating)"
+    inactive_subsystems:
+      - "Sample system"
+      - "Propulsion heaters"
+    duty_cycle: "60 %"
+    typical_duration: "6 hr"
+    notes: "Science mapping interleaved with comms passes; GRNS requires long integration but runs continuously during science phase"
+
+  communications:
+    description: "High-rate data downlink via HGA to DSN; TWTA at full power, no science instruments"
+    total_power: "215 W"
+    active_subsystems:
+      - "C&DH (primary + standby keep-alive)"
+      - "ADCS (star trackers, IMU, reaction wheels nominal, electronics)"
+      - "Telecom (SDST + TWTA via HGA, full power)"
+      - "HGA gimbal (Earth-pointing)"
+      - "Thermal (heaters at reduced level)"
+    inactive_subsystems:
+      - "Payload (camera, GRNS, sample system)"
+      - "Propulsion heaters"
+    duty_cycle: "100 %"
+    typical_duration: "8 hr"
+    notes: "Dedicated DSN contact windows; spacecraft slews to Earth-point for maximum data return"
+
+  tag_maneuver:
+    description: "Touch-and-go descent and sampling at Phobos surface; reaction wheels at peak, RCS active, sample system powered"
+    total_power: "339 W"
+    active_subsystems:
+      - "C&DH (primary + standby keep-alive)"
+      - "ADCS (star trackers, IMU, reaction wheels at peak torque, electronics)"
+      - "Telecom (SDST + TWTA for real-time telemetry via MGA)"
+      - "Propulsion (RCS catalyst bed heaters)"
+      - "Payload sample system (harpoon actuator)"
+      - "Mechanisms sample transfer (container transfer arm)"
+      - "Thermal (heaters at reduced level)"
+    inactive_subsystems:
+      - "Payload camera (not imaging during TAG)"
+      - "Payload GRNS"
+      - "HGA gimbal (body attitude is surface-normal, MGA used)"
+    duty_cycle: "100 %"
+    typical_duration: "4 hr"
+    notes: "Peak power mode; battery supplements solar arrays if needed. Up to 2 TAG attempts budgeted."
+
+  safe_mode:
+    description: "Minimum-power survival mode; sun-pointing via sun sensors and RCS, LGA downlink, maximum heaters"
+    total_power: "167 W"
+    active_subsystems:
+      - "C&DH (primary + standby keep-alive)"
+      - "ADCS (IMU only, sun sensors passive, RCS for attitude)"
+      - "Telecom (SDST via LGA, receive and low-rate downlink)"
+      - "Thermal (survival heaters at maximum cold-case level)"
+    inactive_subsystems:
+      - "ADCS star trackers"
+      - "ADCS reaction wheels"
+      - "ADCS electronics"
+      - "Telecom TWTA"
+      - "HGA gimbal"
+      - "All payload instruments"
+      - "Propulsion heaters (RCS blowdown, no preheat needed)"
+    duty_cycle: "100 %"
+    typical_duration: "24 hr"
+    notes: "Autonomous entry on anomaly detection. Sun-point maintains solar array illumination. LGA provides hemispherical coverage for ground contact regardless of attitude uncertainty."

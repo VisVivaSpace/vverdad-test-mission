@@ -1,0 +1,42 @@
+{
+    "outbound_scan": {
+        "launch_window": {
+            "open": "{{ mission.constraints.launch_energy.launch_window_open | to_utc }}",
+            "close": "{{ mission.constraints.launch_energy.launch_window_close | to_utc }}",
+            "step_days": 1
+        },
+        "arrival_window": {
+            "open": "{{ mission.timeline.phases.cruise.end | to_utc }}",
+            "close": "2036-07-01T00:00:00 UTC",
+            "step_days": 1
+        },
+        "max_c3_km2_s2": {{ mission.constraints.launch_energy.max_c3 | value("km^2/s^2") }},
+        "max_arrival_vinf_km_s": {{ mission.constraints.mars_arrival.max_v_infinity | value("km/s") }}
+    },
+    "return_scan": {
+        "departure_window": {
+            "open": "{{ mission.constraints.earth_return.departure_window_open | to_utc }}",
+            "close": "{{ mission.constraints.earth_return.departure_window_close | to_utc }}",
+            "step_days": 1
+        },
+        "arrival_window": {
+            "open": "2038-07-01T00:00:00 UTC",
+            "close": "2038-11-01T00:00:00 UTC",
+            "step_days": 1
+        },
+        "max_earth_arrival_vinf_km_s": {{ mission.constraints.earth_return.max_earth_arrival_v_infinity | value("km/s") }}
+    },
+    "mars": {
+        "mu_km3_s2": {{ mission.constraints.mars.gravitational_parameter | value("km^3/s^2") }},
+        "radius_km": {{ mission.constraints.mars.equatorial_radius | value("km") }},
+        "capture_periapsis_km": {{ mission.constraints.mars_arrival.capture_orbit_periapsis | value("km") }},
+        "capture_apoapsis_km": {{ mission.constraints.mars_arrival.capture_orbit_apoapsis | value("km") }}
+    },
+    "sun": {
+        "mu_km3_s2": 132712440041.28
+    },
+    "output": {
+        "trajectory_results": "trajectory_results.json",
+        "porkchop_csv": "porkchop.csv"
+    }
+}

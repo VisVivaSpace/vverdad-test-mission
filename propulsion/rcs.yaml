@@ -1,0 +1,54 @@
+# Monopropellant RCS — Phobos Sample Return
+# Heritage: Aerojet MR-103 / MR-111 class hydrazine thrusters
+# Handles trajectory corrections, proximity ops, attitude control backup,
+# and momentum wheel desaturation.
+
+thruster:
+  name: "PSR-RCS Monopropellant Thruster"
+  type: "monopropellant catalytic"
+  heritage: "Aerojet MR-111C class"
+
+performance:
+  thrust: "4.0 N"
+  specific_impulse: "224 s"
+  minimum_impulse_bit: "0.09 N*s"
+  steady_state_impulse: "896 N*s"
+  exhaust_velocity: "2197 m/s"
+
+propellant:
+  type: "hydrazine"
+  catalyst: "Shell 405 iridium on alumina"
+
+design:
+  number_of_thrusters: 12
+  thruster_dry_mass: "0.33 kg"
+  total_thruster_mass: "3.96 kg"
+  valve_response_time: "15 ms"
+  valve_type: "normally-closed solenoid"
+  feed_system: "pressure-fed, blowdown GN2"
+
+configuration:
+  arrangement: "4 pods of 3 thrusters"
+  pod_locations: "spacecraft corners, canted"
+  cant_angle: "10 deg"
+  redundancy: "any single thruster failure tolerable"
+  axes_controlled: "3-axis translation and rotation"
+
+operational:
+  catalyst_bed_preheat: true
+  preheat_power: "9.0 W"
+  preheat_duration: "30 min"
+  cycle_life: 500000
+  cumulative_pulse_count: 250000
+  operating_pressure_range_begin: "2.4 MPa"
+  operating_pressure_range_end: "0.55 MPa"
+
+notes: >
+  Twelve thrusters in four pods provide full 6-DOF control with single-fault
+  tolerance. Blowdown feed system simplifies design — thrust decreases from
+  ~4.5 N to ~2.2 N over propellant depletion (4.4:1 blowdown ratio). Catalyst
+  bed preheat required before first use and after long dormant periods to
+  avoid cold-start roughness. RCS system can provide backup delta-V capability
+  for critical maneuvers (MOI, departure) at reduced Isp and thrust if main
+  engine is unavailable. Minimum impulse bit supports fine attitude control
+  during TAG approach and Phobos proximity operations.

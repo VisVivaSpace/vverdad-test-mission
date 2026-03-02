@@ -1,0 +1,40 @@
+subsystem,component,cbe_mass_kg,margin_percent,mev_mass_kg
+Structures,Bus Structure,280.00,10,308.00
+Structures,Launch Adapter,25.00,5,26.25
+Mechanisms,Solar Array Deployment,6.00,10,6.60
+Mechanisms,HGA Gimbal,5.50,10,6.05
+Mechanisms,Sample Transfer,3.50,20,4.20
+Mechanisms,Launch Restraints,4.00,5,4.20
+Propulsion,Main Engine,4.20,5,4.41
+Propulsion,RCS Thrusters (12x),3.96,5,4.16
+Power,Solar Arrays,40.00,10,44.00
+Power,Battery,16.00,10,17.60
+Telecom,HGA,8.50,10,9.35
+Telecom,MGA,0.60,5,0.63
+Telecom,LGA,0.30,5,0.32
+Telecom,Transponders (2x SDST),6.40,5,6.72
+Telecom,Amplifiers (2x TWTA),6.00,5,6.30
+C&DH,Flight Computers (2x RAD750),20.40,5,21.42
+Thermal,MLI Blankets,5.00,10,5.50
+Thermal,Radiators,6.00,10,6.60
+Thermal,Heaters and Thermostats,4.00,10,4.40
+Thermal,Temperature Sensors,1.00,5,1.05
+ADCS,Star Trackers (2x),5.00,5,5.25
+ADCS,Sun Sensors (8x),0.24,5,0.25
+ADCS,IMU,0.75,5,0.79
+ADCS,Reaction Wheels (4x),22.00,10,24.20
+ADCS,ADCS Electronics,3.00,10,3.30
+ADCS,ADCS Harness,2.00,10,2.20
+Payload,Wide-Angle Camera,7.50,15,8.63
+Payload,GRNS,10.00,15,11.50
+Payload,Sample System - Mechanism,12.00,25,15.00
+Payload,Sample System - Container,3.00,20,3.60
+Harness,System Harness,25.60,10,28.16
+,,,,
+Dry Mass,Total,537.45,,590.64
+System Margin (25%),,,,147.66
+Dry Mass with Margin,,,,738.30
+Propellant,Bipropellant (MMH/MON-3),,,1060.8
+Propellant,Monopropellant (Hydrazine),,,56.9
+Propellant,Total,,,1117.7
+Wet Mass,Total,,,1856.0

@@ -1,0 +1,15 @@
+{
+  "name": "Gamma-Ray and Neutron Spectrometer",
+  "gamma_detector_type": "BGO scintillator with CdZnTe array",
+  "neutron_detector_type": "Boron-loaded plastic scintillator phoswich",
+  "gamma_energy_range": "0.1-10 MeV",
+  "neutron_energy_range": "Thermal (<0.1 eV) through fast (>0.7 MeV)",
+  "fov": "Nadir-pointed, spatial resolution approximately 1.5x orbital altitude",
+  "integration_time": "720 hr",
+  "data_rate": "0.5 Mbps",
+  "mass": "10 kg",
+  "power": "15 W",
+  "operating_temp_min": "243 K",
+  "operating_temp_max": "323 K",
+  "heritage": "Dawn GRaND, MESSENGER GRNS"
+}

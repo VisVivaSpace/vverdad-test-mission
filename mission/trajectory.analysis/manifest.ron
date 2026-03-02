@@ -1,0 +1,42 @@
+Analysis(
+    id: "trajectory_scan",
+    version: "1.0.0",
+    description: Some("Earth-Mars-Earth porkchop scan and optimal trajectory selection for Phobos Sample Return"),
+    image: "rust:1.75-slim",
+    entrypoint: "trajectory_scan",
+    inputs: [
+        // Launch constraints
+        Input(key: "mission.constraints.launch_energy.max_c3", required: true),
+        Input(key: "mission.constraints.launch_energy.nominal_c3", required: true),
+        Input(key: "mission.constraints.launch_energy.launch_window_open", required: true),
+        Input(key: "mission.constraints.launch_energy.launch_window_close", required: true),
+        // Mars arrival constraints
+        Input(key: "mission.constraints.mars_arrival.max_v_infinity", required: true),
+        Input(key: "mission.constraints.mars_arrival.nominal_v_infinity", required: true),
+        Input(key: "mission.constraints.mars_arrival.capture_orbit_periapsis", required: true),
+        Input(key: "mission.constraints.mars_arrival.capture_orbit_apoapsis", required: true),
+        // Mars body parameters
+        Input(key: "mission.constraints.mars.gravitational_parameter", required: true),
+        Input(key: "mission.constraints.mars.equatorial_radius", required: true),
+        // Earth return constraints
+        Input(key: "mission.constraints.earth_return.max_earth_arrival_v_infinity", required: true),
+        Input(key: "mission.constraints.earth_return.departure_window_open", required: true),
+        Input(key: "mission.constraints.earth_return.departure_window_close", required: true),
+        // Timeline bounds for validation
+        Input(key: "mission.timeline.phases.launch.start", required: true),
+        Input(key: "mission.timeline.phases.cruise.end", required: true),
+    ],
+    outputs: [
+        Output(key: "trajectory_results.json"),
+        Output(key: "porkchop.csv"),
+    ],
+    templates: [
+        Template(source: "config.json.j2", destination: "config.json"),
+    ],
+    static_files: [],
+    resources: Resources(
+        cpu_cores: 2.0,
+        memory_mb: 4096,
+        timeout_seconds: 600,
+    ),
+)

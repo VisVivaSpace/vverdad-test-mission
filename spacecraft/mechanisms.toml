@@ -1,0 +1,26 @@
+# Deployment Mechanisms and Separation Systems — Phobos Sample Return
+# CML-4 point design; mechanism-level detail deferred to Phase B
+
+[solar_array_deployment]
+type = "Spring-actuated hinge with viscous damper"
+mass = "6.0 kg"                                 # Both wings, HDRM + hinges + latches + harness
+power = "0 W"                                   # Passive spring deployment, no motor
+heritage = "MMX / JUICE rigid panel deployment"
+
+[hga_gimbal]
+type = "2-axis gimbal"
+range = "220 deg"                               # Per axis, hemispherical coverage
+mass = "5.5 kg"                                 # Gimbal assembly including motors and harness
+power = "12 W"                                  # Peak slew power
+heritage = "MRO HGA gimbal / OSIRIS-REx class"
+
+[sample_transfer]
+type = "Motorized linear actuator with latch"
+mass = "3.5 kg"                                 # Transfer arm, latch, harness
+power = "15 W"                                  # Peak actuation power
+heritage = "Hayabusa2 sample container transfer"
+
+[launch_restraints]
+type = "Frangibolt HDRM"
+mass = "4.0 kg"                                 # All HDRMs: solar arrays, HGA, sample arm
+heritage = "JWST / OSIRIS-REx Frangibolt"

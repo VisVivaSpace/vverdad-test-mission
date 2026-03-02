@@ -1,0 +1,31 @@
+# Solar Array Configuration — Phobos Sample Return
+# Sized for Mars distance (~1.52 AU) EOL operations
+
+[cells]
+type = "Triple-junction GaInP/GaAs/Ge"
+bol_efficiency = "30 %"
+radiation_degradation_factor = 0.96          # 3-year mission, interplanetary + Mars orbit environment
+inherent_degradation_factor = 0.77           # Assembly, wiring, mismatch, UV, coverglass losses
+
+[array]
+type = "Rigid deployable panels"
+number_of_wings = 2
+total_area = "11.5 m^2"
+wing_area = "5.75 m^2"
+sun_incidence_angle = "0 deg"                # Single-axis SADA tracking assumed
+
+[performance]
+solar_flux_1au = "1361 W/m^2"
+solar_flux_mars = "589 W/m^2"
+power_1au_bol = "3615 W"                     # 11.5 m^2 x 314.4 W/m^2
+power_mars_bol = "1565 W"                    # 11.5 m^2 x 136.1 W/m^2
+power_mars_eol = "1503 W"                    # Design driving case: Mars distance, end of life
+
+[mass]
+array_mass = "40 kg"                         # Both wings including SADA, hinges, harness
+specific_power = "38 W/kg"                   # EOL Mars power / array mass
+
+[stowed]
+wing_stowed_length = "2.4 m"
+wing_stowed_width = "0.8 m"
+wing_stowed_depth = "0.15 m"

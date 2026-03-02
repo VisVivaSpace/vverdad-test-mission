@@ -1,0 +1,31 @@
+Analysis(
+    id: "link_budget",
+    version: "1.0.0",
+    description: Some("X-band downlink margin vs Earth-spacecraft distance for Phobos Sample Return"),
+    image: "python:3.11-slim",
+    entrypoint: "run.sh",
+    inputs: [
+        // Antenna parameters
+        Input(key: "telecom.antenna", required: true),
+        // Transponder and amplifier
+        Input(key: "telecom.transponder", required: true),
+        // DSN ground station
+        Input(key: "telecom.ground_station", required: true),
+        // Trajectory results for Earth-Mars distance profile
+        Input(key: "mission.trajectory.trajectory_results", required: true),
+    ],
+    outputs: [
+        Output(key: "link_margin_summary.json"),
+        Output(key: "link_margin_plot.png"),
+    ],
+    templates: [
+        Template(source: "link_budget.py.j2", destination: "link_budget.py"),
+        Template(source: "plot_margin.py.j2", destination: "plot_margin.py"),
+    ],
+    static_files: ["run.sh"],
+    resources: Resources(
+        cpu_cores: 1.0,
+        memory_mb: 2048,
+        timeout_seconds: 300,
+    ),
+)

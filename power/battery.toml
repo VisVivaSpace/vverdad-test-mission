@@ -1,0 +1,25 @@
+# Battery Configuration — Phobos Sample Return
+# Sized for Mars eclipse and peak power support
+
+[cells]
+chemistry = "Li-ion NMC"
+nominal_cell_voltage = "3.6 V"
+number_of_cells = 16                         # 8s2p configuration
+configuration = "8s2p"
+
+[battery]
+total_capacity = "2400 W*hr"                 # BOL, accounts for 15% EOL capacity fade
+depth_of_discharge_limit = "40 %"            # Conservative for ~500 eclipse cycles
+cycle_life_at_rated_dod = 5000               # Cycles to 80% capacity retention at 40% DOD
+bus_voltage = "28 V"                         # Regulated bus, 8s Li-ion nominal 28.8 V
+
+[sizing_context]
+eclipse_duration_mars = "75 min"             # Worst-case Mars orbit eclipse
+eclipse_power_load = "600 W"                 # Reduced ops: heaters, C&DH, essential loads
+eclipse_energy_required = "750 W*hr"         # 600 W x 1.25 hr
+
+[discharge]
+peak_discharge_rate = "800 W"                # Eclipse load plus transient margin
+
+[mass]
+battery_mass = "16 kg"                       # Including packaging, harness, heaters, electronics

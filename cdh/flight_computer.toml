@@ -1,0 +1,58 @@
+# Flight Computer — Phobos Sample Return
+# RAD750-based C&DH for a ~3-year interplanetary mission
+# Centralized architecture: single flight computer with cold spare
+
+[processor]
+name = "RAD750 Single-Board Computer"
+manufacturer = "BAE Systems"
+architecture = "PowerPC 750"
+clock_speed = "200 MHz"
+instruction_rate = "400 MIPS"
+word_size = "32 bit"
+
+[memory]
+sram = "256 MB"                              # ECC-protected SRAM for runtime
+eeprom = "4 MB"                              # Boot code and safe-mode FSW (non-volatile)
+flash = "8 GB"                               # Non-volatile bulk storage for FSW images and tables
+mram = "2 MB"                                # Critical state and checkpoint storage
+
+[data_storage]
+recorder_type = "Solid-State Recorder"
+recorder_capacity = "32 Gbit"                # NAND flash, EDAC-protected
+edac_scheme = "Reed-Solomon"
+edac_overhead = "20 %"                       # Usable capacity ~25.6 Gbit after EDAC
+scrub_interval = "24 hr"                     # Periodic memory scrub to correct accumulated SEUs
+
+[data_bus]
+primary_bus = "MIL-STD-1553B"                # Dual-redundant; housekeeping and subsystem commanding
+primary_bus_data_rate = "1 Mbps"
+secondary_bus = "SpaceWire"                  # High-rate instrument data (WAC, GRNS)
+secondary_bus_data_rate = "200 Mbps"
+serial_interfaces = "RS-422"                 # Point-to-point links for simple sensors
+
+[software]
+rtos = "VxWorks"
+fsw_framework = "cFS (NASA Core Flight System)"
+boot_source = "EEPROM (BAE SUROM)"
+ccsds_compliant = true
+autonomy_level = "FDIR with stored command sequences"
+
+[redundancy]
+scheme = "Block redundancy (cold spare)"     # Primary + identical backup flight computer
+switchover = "Hardware watchdog + ground command"
+safe_mode = "Boot from EEPROM, sun-point, LGA downlink"
+critical_memory_protection = "EDAC on all RAM, TMR on critical registers"
+
+[radiation]
+tid_tolerance = "200 krad"                   # Rad-hard by design; RDM > 4 for interplanetary environment
+see_latchup = "Immune to LET > 100 MeV*cm^2/mg"
+seu_mitigation = "EDAC + periodic scrubbing"
+
+[thermal]
+operating_temp_min = "233 K"                 # -40 deg C
+operating_temp_max = "343 K"                 # +70 deg C
+
+[physical]
+mass = "10.2 kg"                             # Per SBC (two units for redundancy: 20.4 kg total)
+power_nominal = "18 W"                       # Active SBC; cold spare draws ~2 W standby
+power_standby = "2 W"                        # Cold spare keep-alive

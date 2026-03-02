@@ -1,0 +1,23 @@
+# Spacecraft Bus Configuration — Phobos Sample Return
+# Box-type bus, JAXA MMX heritage class
+# Falcon Heavy expendable launch, 5.2 m fairing
+
+[configuration]
+bus_type = "box"
+primary_material = "aluminum honeycomb"
+design_standard = "NASA-STD-5001B"
+launch_adapter = "1194mm clampband"
+
+[dimensions]
+length = "2.0 m"                                # Along thrust axis
+width = "1.8 m"
+height = "1.6 m"
+
+[mass]
+structural_mass = "280 kg"                      # Primary structure: panels, decks, fittings, inserts
+structural_mass_fraction = "16 %"               # Of ~1750 kg dry mass estimate
+
+[loads]
+axial_load_factor = 5.5                         # g, Falcon Heavy MECO envelope
+lateral_load_factor = 2.0                       # g, max-Q/transonic envelope
+first_mode_frequency = "30 Hz"                  # Lateral, >10 Hz FH requirement with margin

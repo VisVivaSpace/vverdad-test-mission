@@ -1,0 +1,35 @@
+{
+    "description": "DSN 34-meter Beam Waveguide ground station parameters for link budget analysis",
+
+    "station": {
+        "name": "DSN 34m BWG Subnet",
+        "type": "34m_beam_waveguide",
+        "network": "NASA Deep Space Network",
+        "complexes": ["Goldstone (GDSCC)", "Madrid (MDSCC)", "Canberra (CDSCC)"],
+        "reference_document": "810-005 Module 104"
+    },
+
+    "receive": {
+        "antenna_diameter": "34 m",
+        "frequency_band": "X-band",
+        "receive_frequency": "8.425 GHz",
+        "antenna_gain": "68.2 dBi",
+        "system_noise_temperature": "20 K",
+        "g_over_t": "55.0 dB/K",
+        "polarization": "right-hand circular"
+    },
+
+    "transmit": {
+        "uplink_frequency": "7.167 GHz",
+        "transmit_power": "20 kW",
+        "uplink_eirp": "106 dBW"
+    },
+
+    "atmospheric_loss_clear_sky_20deg": "0.12 dB",
+    "atmospheric_loss_moderate_weather_20deg": "0.5 dB",
+
+    "scheduling": {
+        "typical_track_hours_per_day": 8,
+        "contact_cadence": "daily during critical phases, 3-4 per week during cruise"
+    }
+}

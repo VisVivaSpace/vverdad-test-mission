@@ -1,0 +1,48 @@
+{
+    "description": "Phobos Sample Return antenna suite — X-band primary, three antennas covering all mission phases",
+
+    "hga": {
+        "name": "PSR High Gain Antenna",
+        "type": "parabolic_reflector",
+        "mounting": "two-axis gimbal",
+        "frequency_band": "X-band",
+        "center_frequency": "8.425 GHz",
+        "diameter": "1.5 m",
+        "aperture_efficiency": 0.55,
+        "gain": "39.7 dBi",
+        "half_power_beamwidth": "1.7 deg",
+        "pointing_accuracy_required": "0.2 deg",
+        "polarization": "right-hand circular",
+        "mass": "8.5 kg",
+        "heritage": "MRO 3m class scaled — Cassegrain feed"
+    },
+
+    "mga": {
+        "name": "PSR Medium Gain Antenna",
+        "type": "horn",
+        "mounting": "body-fixed, boresight aligned with HGA",
+        "frequency_band": "X-band",
+        "center_frequency": "8.425 GHz",
+        "gain": "15.0 dBi",
+        "half_power_beamwidth": "25 deg",
+        "pointing_accuracy_required": "5 deg",
+        "polarization": "right-hand circular",
+        "mass": "0.6 kg",
+        "heritage": "OSIRIS-REx MGA class"
+    },
+
+    "lga": {
+        "name": "PSR Low Gain Antenna",
+        "type": "bicone",
+        "mounting": "body-fixed, nadir face",
+        "frequency_band": "X-band",
+        "center_frequency": "8.425 GHz",
+        "gain": "8.0 dBi",
+        "coverage": "hemispherical",
+        "polarization": "right-hand circular",
+        "mass": "0.3 kg",
+        "heritage": "Juno/Psyche LGA class"
+    },
+
+    "total_mass": "9.4 kg"
+}

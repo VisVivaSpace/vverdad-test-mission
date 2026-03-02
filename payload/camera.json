@@ -1,0 +1,15 @@
+{
+  "name": "Phobos Wide-Angle Camera",
+  "type": "Wide-Angle Camera",
+  "fov": "65 deg",
+  "ifov": "1.5 arcmin",
+  "detector_size": "2048 x 2048 pixels",
+  "spectral_range": "400-950 nm",
+  "spectral_bands": 4,
+  "data_per_image": "8.4 Mbit",
+  "mass": "7.5 kg",
+  "power": "12 W",
+  "operating_temp_min": "253 K",
+  "operating_temp_max": "328 K",
+  "heritage": "MMX OROCHI/TENGOO simplified to single wide-angle camera with filter wheel, Hayabusa2 ONC-T"
+}
