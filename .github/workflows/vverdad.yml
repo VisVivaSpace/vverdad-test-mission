@@ -1,0 +1,47 @@
+# .github/workflows/vverdad.yml
+name: VVERDAD Render
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache vv binary
+        id: cache-vv
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/vv
+          key: ${{ runner.os }}-vv-${{ hashFiles('.github/workflows/vverdad.yml') }}
+
+      - name: Install vv
+        if: steps.cache-vv.outputs.cache-hit != 'true'
+        run: cargo install --git https://github.com/VisVivaSpace/vverdad-prototype.git
+
+      - name: Render project
+        run: vv . -d artifacts/ -y
+
+      - name: Upload outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: vverdad-output
+          path: artifacts/_output/
+
+      # Uncomment to commit rendered outputs back to the repository:
+      # - name: Commit outputs
+      #   run: |
+      #     git config user.name "VVERDAD CI"
+      #     git config user.email "vverdad@ci"
+      #     git add _output/
+      #     git commit -m "Update rendered outputs" || true
+      #     git push
