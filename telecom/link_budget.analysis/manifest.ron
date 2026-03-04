@@ -3,7 +3,7 @@ Analysis(
     version: "1.0.0",
     description: Some("X-band downlink margin vs Earth-spacecraft distance for Phobos Sample Return"),
     image: "python:3.11-slim",
-    entrypoint: "run.sh",
+    entrypoint: "bash run.sh",
     inputs: [
         // Antenna parameters
         Input(key: "telecom.antenna", required: true),
