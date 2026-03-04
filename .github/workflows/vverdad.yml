@@ -38,10 +38,10 @@ jobs:
           path: artifacts/_output/
 
       # Uncomment to commit rendered outputs back to the repository:
-      # - name: Commit outputs
-      #   run: |
-      #     git config user.name "VVERDAD CI"
-      #     git config user.email "vverdad@ci"
-      #     git add _output/
-      #     git commit -m "Update rendered outputs" || true
-      #     git push
+       - name: Commit outputs
+         run: |
+           git config user.name "VVERDAD CI"
+           git config user.email "vverdad@ci"
+           git add _output/
+           git commit -m "Update rendered outputs" || true
+           git push
