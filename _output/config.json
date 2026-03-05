@@ -1,0 +1,42 @@
+{
+    "outbound_scan": {
+        "launch_window": {
+            "open": "2035-09-01T00:00:00.000 UTC",
+            "close": "2035-10-15T00:00:00.000 UTC",
+            "step_days": 1
+        },
+        "arrival_window": {
+            "open": "2036-04-18T00:00:00.000 UTC",
+            "close": "2036-07-01T00:00:00 UTC",
+            "step_days": 1
+        },
+        "max_c3_km2_s2": 12.0,
+        "max_arrival_vinf_km_s": 3.2
+    },
+    "return_scan": {
+        "departure_window": {
+            "open": "2037-10-01T00:00:00.000 UTC",
+            "close": "2037-11-15T00:00:00.000 UTC",
+            "step_days": 1
+        },
+        "arrival_window": {
+            "open": "2038-07-01T00:00:00 UTC",
+            "close": "2038-11-01T00:00:00 UTC",
+            "step_days": 1
+        },
+        "max_earth_arrival_vinf_km_s": 3.5
+    },
+    "mars": {
+        "mu_km3_s2": 42828.37,
+        "radius_km": 3396.2,
+        "capture_periapsis_km": 500.0,
+        "capture_apoapsis_km": 40000.0
+    },
+    "sun": {
+        "mu_km3_s2": 132712440041.28
+    },
+    "output": {
+        "trajectory_results": "trajectory_results.json",
+        "porkchop_csv": "porkchop.csv"
+    }
+}
