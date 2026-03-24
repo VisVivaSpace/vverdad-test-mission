@@ -2,6 +2,7 @@
 title: "Subsystem Summary Report"
 author: "VVERDAD"
 format: html
+jupyter: python3
 ---
 
 # Subsystem Margin Summary — {{ mission.overview.mission_name }}
@@ -16,7 +17,9 @@ masses and maximum expected value (MEV) masses including design maturity
 margins. The spacecraft is sized for an ESPA-Grande class launch capacity
 of 2200 kg total wet mass.
 
-```julia
+```{python}
+#| label: mass-margin
+
 # Mass values from the mass equipment list
 dry_mass_cbe_kg = {{ systems.mass_budget.row[32][2] }}
 dry_mass_mev_kg = {{ systems.mass_budget.row[32][4] }}
@@ -32,15 +35,15 @@ capacity_kg = 2200.0
 mass_margin_kg = capacity_kg - wet_mass_kg
 mass_margin_pct = (mass_margin_kg / capacity_kg) * 100.0
 
-println("=== Mass Margin Summary ===")
-println("Dry mass (CBE):         $(round(dry_mass_cbe_kg, digits=1)) kg")
-println("Dry mass (MEV):         $(round(dry_mass_mev_kg, digits=1)) kg")
-println("System margin:          $(round(system_margin_kg, digits=1)) kg")
-println("Dry mass w/ margin:     $(round(dry_mass_with_margin_kg, digits=1)) kg")
-println("Propellant:             $(round(propellant_kg, digits=1)) kg")
-println("Total wet mass:         $(round(wet_mass_kg, digits=1)) kg")
-println("Launch capacity:        $(capacity_kg) kg")
-println("Available margin:       $(round(mass_margin_kg, digits=1)) kg ($(round(mass_margin_pct, digits=1))%)")
+print("=== Mass Margin Summary ===")
+print(f"Dry mass (CBE):         {dry_mass_cbe_kg:.1f} kg")
+print(f"Dry mass (MEV):         {dry_mass_mev_kg:.1f} kg")
+print(f"System margin:          {system_margin_kg:.1f} kg")
+print(f"Dry mass w/ margin:     {dry_mass_with_margin_kg:.1f} kg")
+print(f"Propellant:             {propellant_kg:.1f} kg")
+print(f"Total wet mass:         {wet_mass_kg:.1f} kg")
+print(f"Launch capacity:        {capacity_kg:.1f} kg")
+print(f"Available margin:       {mass_margin_kg:.1f} kg ({mass_margin_pct:.1f}%)")
 ```
 
 ### Mass Breakdown
@@ -60,30 +63,29 @@ The power budget tracks subsystem power draws across five operating modes.
 Available power is set by the solar array end-of-life (EOL) output at Mars
 distance: **{{ power.solar_array.performance.power_mars_eol }}**.
 
-```julia
-# Per-mode total power draws from the power budget (row 17 = totals)
-power_cruise_w = {{ systems.power_budget.row[17][2] }}
-power_science_w = {{ systems.power_budget.row[17][3] }}
-power_comms_w = {{ systems.power_budget.row[17][4] }}
-power_tag_w = {{ systems.power_budget.row[17][5] }}
-power_safe_w = {{ systems.power_budget.row[17][6] }}
+```{python}
+#| label: power-margin
 
-# Solar array EOL power at Mars (parse numeric value from quantity string)
-solar_eol_w = parse(Float64, split("{{ power.solar_array.performance.power_mars_eol }}")[1])
+# Per-mode total power draws from the power budget
+power_modes = {
+    "Cruise": {{ systems.power_budget.row[17][2] }},
+    "Science Mapping": {{ systems.power_budget.row[17][3] }},
+    "Communications": {{ systems.power_budget.row[17][4] }},
+    "TAG Maneuver": {{ systems.power_budget.row[17][5] }},
+    "Safe Mode": {{ systems.power_budget.row[17][6] }},
+}
 
-modes = ["Cruise", "Science Mapping", "Communications", "TAG Maneuver", "Safe Mode"]
-draws = [power_cruise_w, power_science_w, power_comms_w, power_tag_w, power_safe_w]
+# Solar array EOL power at Mars
+solar_eol_w = float("{{ power.solar_array.performance.power_mars_eol }}".split()[0])
 
-println("=== Power Margin Summary ===")
-println(rpad("Mode", 22), rpad("Draw (W)", 12), rpad("Margin (W)", 12), "Margin (%)")
-println("-"^58)
-for (mode, draw) in zip(modes, draws)
+print("=== Power Margin Summary ===")
+print(f"{'Mode':<22} {'Draw (W)':<12} {'Margin (W)':<12} Margin (%)")
+print("-" * 58)
+for mode, draw in power_modes.items():
     margin_w = solar_eol_w - draw
     margin_pct = (margin_w / solar_eol_w) * 100.0
-    println(rpad(mode, 22), rpad(round(draw, digits=1), 12),
-            rpad(round(margin_w, digits=1), 12),
-            round(margin_pct, digits=1), "%")
-end
+    status = "[OK]" if margin_pct >= 30 else "[LOW]" if margin_pct >= 0 else "[OVER]"
+    print(f"{mode:<22} {draw:<12.1f} {margin_w:<12.1f} {margin_pct:.1f}% {status}")
 ```
 
 ### Power Mode Descriptions

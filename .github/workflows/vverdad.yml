@@ -22,19 +22,6 @@ jobs:
           curl -sL https://github.com/VisVivaSpace/vverdad-prototype/releases/latest/download/vv-x86_64-unknown-linux-gnu.tar.gz | tar xz
           sudo mv vv /usr/local/bin/
 
-      - name: Pre-pull Docker images
-        run: |
-          docker pull ubuntu:latest
-          docker pull python:3.11-slim
-          docker pull ghcr.io/quarto-dev/quarto:latest
-
-      - name: Debug subsystem_summary container
-        run: |
-          vv . -d debug-artifacts/ -y || true
-          ls -la debug-artifacts/_output/reports/subsystem_summary.analysis/ || true
-          cat debug-artifacts/_output/reports/subsystem_summary.analysis/subsystem_summary.qmd || true
-          docker run --rm -v $(pwd)/debug-artifacts/_output/reports/subsystem_summary.analysis:/analysis -w /analysis ghcr.io/quarto-dev/quarto:latest sh run.sh 2>&1 || true
-
       - name: Render project
         run: vv . -d artifacts/ -y
 
