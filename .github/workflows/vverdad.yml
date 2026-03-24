@@ -28,6 +28,13 @@ jobs:
           docker pull python:3.11-slim
           docker pull ghcr.io/quarto-dev/quarto:latest
 
+      - name: Debug subsystem_summary container
+        run: |
+          vv . -d debug-artifacts/ -y || true
+          ls -la debug-artifacts/_output/reports/subsystem_summary.analysis/ || true
+          cat debug-artifacts/_output/reports/subsystem_summary.analysis/subsystem_summary.qmd || true
+          docker run --rm -v $(pwd)/debug-artifacts/_output/reports/subsystem_summary.analysis:/analysis -w /analysis ghcr.io/quarto-dev/quarto:latest sh run.sh 2>&1 || true
+
       - name: Render project
         run: vv . -d artifacts/ -y
 
