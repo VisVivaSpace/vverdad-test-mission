@@ -1,0 +1,28 @@
+# Lamberto sweep configuration — rendered by VVERDAD from mission constraints
+# Phobos Sample Return: Earth-Mars outbound and Mars-Earth return scans
+# Ephemeris: lamberto embeds DE440 (2000-2075), no external SPK needed.
+
+sweeps:
+  - name: "outbound_earth_mars"
+    departure_body: "Earth"
+    arrival_body: "Mars"
+    departure_start: "2035-09-01T00:00:00.000 UTC"
+    departure_end: "2035-10-15T00:00:00.000 UTC"
+    departure_step_days: 1
+    arrival_start: "2036-03-01T00:00:00 UTC"
+    arrival_end: "2036-07-01T00:00:00 UTC"
+    arrival_step_days: 1
+    direction: prograde
+    nrev: 0
+
+  - name: "return_mars_earth"
+    departure_body: "Mars"
+    arrival_body: "Earth"
+    departure_start: "2037-10-01T00:00:00.000 UTC"
+    departure_end: "2037-11-15T00:00:00.000 UTC"
+    departure_step_days: 1
+    arrival_start: "2038-07-01T00:00:00 UTC"
+    arrival_end: "2038-11-01T00:00:00 UTC"
+    arrival_step_days: 1
+    direction: prograde
+    nrev: 0

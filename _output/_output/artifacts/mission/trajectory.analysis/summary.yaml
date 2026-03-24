@@ -1,0 +1,50 @@
+- name: outbound_earth_mars
+  total_grid_points: 5535
+  valid_solutions: 5535
+  skipped_tof: 0
+  skipped_singularity: 0
+  skipped_solver_failure: 0
+  skipped_ephemeris: 0
+  best_departure_v_inf:
+    departure_date: 2035-09-01T00:00:00 UTC
+    arrival_date: 2036-06-07T00:00:00 UTC
+    tof_days: 280.0
+    transfer_angle_deg: 155.00146034969322
+    transfer_type: I
+    c3_departure_km2s2: 41.80117956659296
+    v_inf_departure_kms: 6.465383172449484
+    v_inf_arrival_kms: 3.9444410550399387
+  best_arrival_v_inf:
+    departure_date: 2035-09-01T00:00:00 UTC
+    arrival_date: 2036-03-05T00:00:00 UTC
+    tof_days: 186.0
+    transfer_angle_deg: 111.39377035152685
+    transfer_type: I
+    c3_departure_km2s2: 60.27873104341109
+    v_inf_departure_kms: 7.763937856745834
+    v_inf_arrival_kms: 3.5924173556363836
+- name: return_mars_earth
+  total_grid_points: 5704
+  valid_solutions: 5704
+  skipped_tof: 0
+  skipped_singularity: 0
+  skipped_solver_failure: 0
+  skipped_ephemeris: 0
+  best_departure_v_inf:
+    departure_date: 2037-10-01T00:00:00 UTC
+    arrival_date: 2038-07-23T00:00:00 UTC
+    tof_days: 295.0
+    transfer_angle_deg: 271.0558531891229
+    transfer_type: II
+    c3_departure_km2s2: 20.72354706436348
+    v_inf_departure_kms: 4.552312276674732
+    v_inf_arrival_kms: 8.184130116834615
+  best_arrival_v_inf:
+    departure_date: 2037-10-01T00:00:00 UTC
+    arrival_date: 2038-07-01T00:00:00 UTC
+    tof_days: 273.0
+    transfer_angle_deg: 250.07368546497455
+    transfer_type: II
+    c3_departure_km2s2: 23.524962909838404
+    v_inf_departure_kms: 4.850253901584782
+    v_inf_arrival_kms: 7.057068929609619
