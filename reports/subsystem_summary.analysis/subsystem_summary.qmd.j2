@@ -22,12 +22,12 @@ of 2200 kg total wet mass.
 #| echo: true
 
 # Mass values from the mass equipment list
-dry_mass_cbe_kg = {{ systems.mass_budget.row[33][2] }}
-dry_mass_mev_kg = {{ systems.mass_budget.row[33][4] }}
-system_margin_kg = {{ systems.mass_budget.row[34][4] }}
-dry_mass_with_margin_kg = {{ systems.mass_budget.row[35][4] }}
-propellant_kg = {{ systems.mass_budget.row[38][4] }}
-wet_mass_kg = {{ systems.mass_budget.row[39][4] }}
+dry_mass_cbe_kg = {{ systems.mass_budget.row[32][2] }}
+dry_mass_mev_kg = {{ systems.mass_budget.row[32][4] }}
+system_margin_kg = {{ systems.mass_budget.row[33][4] }}
+dry_mass_with_margin_kg = {{ systems.mass_budget.row[34][4] }}
+propellant_kg = {{ systems.mass_budget.row[37][4] }}
+wet_mass_kg = {{ systems.mass_budget.row[38][4] }}
 
 # ESPA-Grande capacity
 capacity_kg = 2200.0
@@ -51,12 +51,12 @@ println("Available margin:       $(round(mass_margin_kg, digits=1)) kg ($(round(
 
 | Category | Mass (kg) |
 |:--|--:|
-| Dry Mass (CBE) | {{ systems.mass_budget.row[33][2] }} |
-| Dry Mass (MEV) | {{ systems.mass_budget.row[33][4] }} |
-| System Margin | {{ systems.mass_budget.row[34][4] }} |
-| Dry Mass with Margin | {{ systems.mass_budget.row[35][4] }} |
-| Total Propellant | {{ systems.mass_budget.row[38][4] }} |
-| **Total Wet Mass** | **{{ systems.mass_budget.row[39][4] }}** |
+| Dry Mass (CBE) | {{ systems.mass_budget.row[32][2] }} |
+| Dry Mass (MEV) | {{ systems.mass_budget.row[32][4] }} |
+| System Margin | {{ systems.mass_budget.row[33][4] }} |
+| Dry Mass with Margin | {{ systems.mass_budget.row[34][4] }} |
+| Total Propellant | {{ systems.mass_budget.row[37][4] }} |
+| **Total Wet Mass** | **{{ systems.mass_budget.row[38][4] }}** |
 
 ## Power Budget
 
