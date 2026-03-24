@@ -2,8 +2,6 @@
 title: "Subsystem Summary Report"
 author: "VVERDAD"
 format: html
-execute:
-  eval: false
 ---
 
 # Subsystem Margin Summary — {{ mission.overview.mission_name }}
@@ -18,10 +16,7 @@ masses and maximum expected value (MEV) masses including design maturity
 margins. The spacecraft is sized for an ESPA-Grande class launch capacity
 of 2200 kg total wet mass.
 
-```{julia}
-#| label: mass-margin
-#| echo: true
-
+```julia
 # Mass values from the mass equipment list
 dry_mass_cbe_kg = {{ systems.mass_budget.row[32][2] }}
 dry_mass_mev_kg = {{ systems.mass_budget.row[32][4] }}
@@ -65,10 +60,7 @@ The power budget tracks subsystem power draws across five operating modes.
 Available power is set by the solar array end-of-life (EOL) output at Mars
 distance: **{{ power.solar_array.performance.power_mars_eol }}**.
 
-```{julia}
-#| label: power-margin
-#| echo: true
-
+```julia
 # Per-mode total power draws from the power budget (row 17 = totals)
 power_cruise_w = {{ systems.power_budget.row[17][2] }}
 power_science_w = {{ systems.power_budget.row[17][3] }}
