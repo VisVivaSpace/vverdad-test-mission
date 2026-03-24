@@ -3,7 +3,7 @@ Analysis(
     version: "1.0.0",
     description: Some("Quarto-rendered HTML summary of spacecraft subsystem margins"),
     image: "ghcr.io/quarto-dev/quarto:latest",
-    entrypoint: "bash run.sh",
+    entrypoint: "sh run.sh",
     inputs: [
         // Mass equipment list with CBE/MEV totals
         Input(key: "systems.mass_budget", required: true),

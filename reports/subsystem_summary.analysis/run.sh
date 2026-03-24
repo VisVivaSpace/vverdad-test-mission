@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/sh
+set -eu
 
 quarto render subsystem_summary.qmd --to html
