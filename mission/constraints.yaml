@@ -1,0 +1,51 @@
+# Phobos Sample Return — Mission Constraints
+# Boundary conditions for trajectory design and mission planning.
+
+launch_vehicle:
+  name: "Falcon Heavy Expendable"
+  payload_to_mars_transfer: "6200 kg"
+  fairing_diameter: "5.2 m"
+  fairing_height: "13.1 m"
+  launch_site: "KSC LC-39A"
+  launch_site_latitude: "28.6 deg"
+
+launch_energy:
+  max_c3: "12.0 km^2/s^2"
+  nominal_c3: "9.5 km^2/s^2"
+  launch_window_open: "2035-09-01 UTC"
+  launch_window_close: "2035-10-15 UTC"
+
+mars_arrival:
+  max_v_infinity: "3.2 km/s"
+  nominal_v_infinity: "2.7 km/s"
+  capture_orbit_periapsis: "500 km"
+  capture_orbit_apoapsis: "40000 km"
+
+mars:
+  gravitational_parameter: "42828.37 km^3/s^2"
+  equatorial_radius: "3396.2 km"
+  soi_radius: "577000 km"
+
+phobos:
+  semi_major_axis: "9376 km"
+  eccentricity: 0.0151
+  inclination: "1.093 deg"
+  orbital_period: "7.66 hr"
+  mean_radius: "11.1 km"
+  gravitational_parameter: "0.0007112 km^3/s^2"
+  qso_altitude_nominal: "50 km"
+  qso_altitude_low: "20 km"
+
+earth_return:
+  max_earth_arrival_v_infinity: "3.5 km/s"
+  departure_window_open: "2037-10-01 UTC"
+  departure_window_close: "2037-11-15 UTC"
+
+gateway:
+  orbit_type: "Near-Rectilinear Halo Orbit (NRHO)"
+  primary_body: "Moon"
+  perilune_altitude: "3000 km"
+  apolune_altitude: "70000 km"
+  orbital_period: "6.5 d"
+  resonance: "9:2 synodic"
+  rendezvous_delta_v_budget: "15 m/s"

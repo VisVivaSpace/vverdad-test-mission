@@ -1,0 +1,43 @@
+# Bipropellant Main Engine — Phobos Sample Return
+# Heritage: JAXA MMX-class 500 N bipropellant engine
+# Handles all major deterministic maneuvers: MOI, Phobos transfer,
+# departure burns, and Earth return injection.
+
+engine:
+  name: "PSR-500 Bipropellant Thruster"
+  type: "bipropellant"
+  heritage: "MMX 500N class / Airbus LEROS-1b family"
+
+performance:
+  thrust: "500 N"
+  specific_impulse: "321 s"
+  minimum_thrust: "400 N"
+  exhaust_velocity: "3148 m/s"
+
+propellants:
+  fuel: "MMH"
+  oxidizer: "MON-3"
+  mixture_ratio: 1.65
+  feed_system: "pressure-fed, regulated GHe"
+
+design:
+  chamber_pressure: "1.1 MPa"
+  nozzle_expansion_ratio: 150
+  number_of_engines: 1
+  engine_dry_mass: "4.2 kg"
+  valve_type: "dual-seat series-redundant"
+  mounting: "fixed, spacecraft thrust axis"
+
+operational:
+  restart_capability: 50
+  cumulative_burn_time: "3600 s"
+  preheat_time: "0 s"
+  ignition: "hypergolic"
+
+notes: >
+  Pressure-fed system with regulated helium pressurant. Hypergolic
+  propellant combination provides inherent ignition reliability with
+  no ignition system required. MON-3 selected over NTO for improved
+  freeze point margin (-25 C vs -11 C) and titanium tank compatibility.
+  Single engine is sufficient for this mission class; redundancy is
+  provided by the RCS system for critical maneuvers at reduced thrust.

@@ -1,0 +1,155 @@
+# Telecom Summary — {{ mission.overview.mission_name }}
+
+## Antenna Suite
+
+{{ telecom.antenna.description }}
+
+### High Gain Antenna
+
+| Parameter | Value |
+|:--|:--|
+| Name | {{ telecom.antenna.hga.name }} |
+| Type | {{ telecom.antenna.hga.type }} |
+| Mounting | {{ telecom.antenna.hga.mounting }} |
+| Frequency Band | {{ telecom.antenna.hga.frequency_band }} ({{ telecom.antenna.hga.center_frequency }}) |
+| Diameter | {{ telecom.antenna.hga.diameter }} |
+| Gain | {{ telecom.antenna.hga.gain }} |
+| HPBW | {{ telecom.antenna.hga.half_power_beamwidth }} |
+| Pointing Accuracy | {{ telecom.antenna.hga.pointing_accuracy_required }} |
+| Polarization | {{ telecom.antenna.hga.polarization }} |
+| Mass | {{ telecom.antenna.hga.mass }} |
+| Heritage | {{ telecom.antenna.hga.heritage }} |
+
+### Medium Gain Antenna
+
+| Parameter | Value |
+|:--|:--|
+| Name | {{ telecom.antenna.mga.name }} |
+| Type | {{ telecom.antenna.mga.type }} |
+| Mounting | {{ telecom.antenna.mga.mounting }} |
+| Gain | {{ telecom.antenna.mga.gain }} |
+| HPBW | {{ telecom.antenna.mga.half_power_beamwidth }} |
+| Mass | {{ telecom.antenna.mga.mass }} |
+| Heritage | {{ telecom.antenna.mga.heritage }} |
+
+### Low Gain Antenna
+
+| Parameter | Value |
+|:--|:--|
+| Name | {{ telecom.antenna.lga.name }} |
+| Type | {{ telecom.antenna.lga.type }} |
+| Mounting | {{ telecom.antenna.lga.mounting }} |
+| Gain | {{ telecom.antenna.lga.gain }} |
+| Coverage | {{ telecom.antenna.lga.coverage }} |
+| Mass | {{ telecom.antenna.lga.mass }} |
+| Heritage | {{ telecom.antenna.lga.heritage }} |
+
+**Total Antenna Mass:** {{ telecom.antenna.total_mass }}
+
+## Transponder and Amplifier
+
+| Parameter | Value |
+|:--|:--|
+| Transponder | {{ telecom.transponder.transponder.name }} |
+| Manufacturer | {{ telecom.transponder.transponder.manufacturer }} |
+| Uplink | {{ telecom.transponder.transponder.uplink_band }} ({{ telecom.transponder.transponder.uplink_frequency }}) |
+| Downlink | {{ telecom.transponder.transponder.downlink_band }} ({{ telecom.transponder.transponder.downlink_frequency }}) |
+| Turnaround Ratio | {{ telecom.transponder.transponder.turnaround_ratio }} |
+| Receiver Sensitivity | {{ telecom.transponder.transponder.receiver_sensitivity }} |
+| Modulation | {{ telecom.transponder.transponder.modulation }} |
+| Coding | {{ telecom.transponder.transponder.coding }} |
+| Required Eb/N0 | {{ telecom.transponder.transponder.required_eb_n0 }} |
+| Transponder Mass | {{ telecom.transponder.transponder.mass }} |
+| Transponder DC Power | {{ telecom.transponder.transponder.dc_power }} |
+
+| Parameter | Value |
+|:--|:--|
+| Amplifier | {{ telecom.transponder.amplifier.name }} |
+| Type | {{ telecom.transponder.amplifier.type }} |
+| RF Output Power | {{ telecom.transponder.amplifier.rf_output_power }} |
+| DC-to-RF Efficiency | {{ telecom.transponder.amplifier.dc_to_rf_efficiency }} |
+| DC Power | {{ telecom.transponder.amplifier.dc_power }} |
+| Amplifier Mass | {{ telecom.transponder.amplifier.mass }} |
+
+- **Redundancy:** {{ telecom.transponder.redundancy }}
+- **Mass per String:** {{ telecom.transponder.total_mass_per_string }}
+- **DC Power per String:** {{ telecom.transponder.total_dc_power_per_string }}
+
+### Selectable Data Rates
+
+{% for rate in telecom.transponder.selectable_data_rates %}- {{ rate }}
+{% endfor %}
+
+## Ground Station
+
+| Parameter | Value |
+|:--|:--|
+| Station | {{ telecom.ground_station.station.name }} |
+| Network | {{ telecom.ground_station.station.network }} |
+| Antenna Diameter | {{ telecom.ground_station.receive.antenna_diameter }} |
+| Receive Gain | {{ telecom.ground_station.receive.antenna_gain }} |
+| System Noise Temp | {{ telecom.ground_station.receive.system_noise_temperature }} |
+| G/T | {{ telecom.ground_station.receive.g_over_t }} |
+| Uplink EIRP | {{ telecom.ground_station.transmit.uplink_eirp }} |
+| Track Hours/Day | {{ telecom.ground_station.scheduling.typical_track_hours_per_day }} |
+
+**Complexes:** {% for complex in telecom.ground_station.station.complexes %}{{ complex }}{% if not loop.last %}, {% endif %}{% endfor %}
+
+## Link Budget Analysis
+
+{% if telecom.link_budget is defined %}
+### Link Margin vs Distance
+
+![Link Margin]({{ telecom.link_budget.link_margin_plot }})
+
+### Margin Summary
+
+| Parameter | Value |
+|:--|:--|
+{% for key, value in telecom.link_budget.link_margin_summary.items() %}| {{ key }} | {{ value }} |
+{% endfor %}
+{% else %}
+*Link budget analysis has not been executed. Run the `link_budget` analysis to generate margin results.*
+{% endif %}
+
+## Data Budget Summary
+
+### Daily Data Generation
+
+| Source | Daily Volume |
+|:--|:--|
+| Camera (WAC) | {{ systems.data_budget.data_generation.camera.daily_volume }} |
+| GRNS | {{ systems.data_budget.data_generation.grns.daily_volume }} |
+| Housekeeping | {{ systems.data_budget.data_generation.housekeeping.daily_volume }} |
+| **Total** | **{{ systems.data_budget.data_generation.daily_total.total }}** |
+
+### Downlink Capacity
+
+| Scenario | Distance | Data Rate | Daily Volume |
+|:--|:--|:--|:--|
+| Near Mars | {{ systems.data_budget.downlink_strategy.near_mars_distance }} | {{ systems.data_budget.downlink_strategy.downlink_rate_near }} | {{ systems.data_budget.downlink_strategy.daily_downlink_near }} |
+| Average | {{ systems.data_budget.downlink_strategy.average_mars_distance }} | {{ systems.data_budget.downlink_strategy.downlink_rate_at_avg_distance }} | {{ systems.data_budget.downlink_strategy.daily_downlink_volume }} |
+| Far Mars | {{ systems.data_budget.downlink_strategy.far_mars_distance }} | {{ systems.data_budget.downlink_strategy.downlink_rate_far }} | {{ systems.data_budget.downlink_strategy.daily_downlink_far }} |
+
+### Budget Closure
+
+| Parameter | Value |
+|:--|:--|
+| Daily Generation | {{ systems.data_budget.budget_closure.daily_generation }} |
+| Daily Downlink (avg) | {{ systems.data_budget.budget_closure.daily_downlink_average }} |
+| Margin Factor (avg) | {{ systems.data_budget.budget_closure.margin_factor }}x |
+| Daily Downlink (worst) | {{ systems.data_budget.budget_closure.daily_downlink_worst_case }} |
+| Worst-Case Margin | {{ systems.data_budget.budget_closure.worst_case_margin_factor }}x |
+
+### Onboard Storage
+
+| Parameter | Value |
+|:--|:--|
+| SSR Raw Capacity | {{ systems.data_budget.data_storage.ssr_capacity_raw }} |
+| EDAC Overhead | {{ systems.data_budget.data_storage.edac_overhead }} |
+| Usable Capacity | {{ systems.data_budget.data_storage.ssr_capacity_usable }} |
+| Days of Buffering | {{ systems.data_budget.data_storage.days_of_storage }} |
+
+---
+
+*Report generated by VVERDAD*

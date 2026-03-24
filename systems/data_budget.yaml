@@ -1,0 +1,91 @@
+# Data Budget — Phobos Sample Return
+# Data generation, storage, and downlink planning for science phase at Mars/Phobos.
+# All data rates and volumes are strings since Mbps/Gbit are not recognized VVERDAD units.
+
+data_generation:
+
+  camera:
+    raw_data_per_image: "8.4 Mbit"
+    compression_ratio: 5
+    compressed_data_per_image: "1.68 Mbit"
+    images_per_science_session: 100
+    science_sessions_per_day: 2
+    daily_volume: "336 Mbit"
+    notes: "WAC 2048x2048 pixels, 4 spectral bands. 5:1 lossless compression applied onboard."
+
+  grns:
+    raw_data_rate: "0.5 Mbps"
+    onboard_processing_reduction: 10
+    effective_telemetry_rate: "0.05 Mbps"
+    science_hours_per_day: 6
+    daily_volume: "1080 Mbit"
+    notes: >
+      Raw detector rate is 0.5 Mbps from BGO scintillator and neutron phoswich.
+      Onboard spectral binning, pulse-height analysis, and accumulation reduce
+      telemetered volume by approximately 10x. GRNS requires long integration
+      (720 hr total) so operates continuously during science mapping phases.
+
+  housekeeping:
+    data_rate: "2 kbps"
+    daily_volume: "173 Mbit"
+    notes: "Engineering telemetry from all subsystems, sampled continuously at 2 kbps."
+
+  daily_total:
+    camera: "336 Mbit"
+    grns: "1080 Mbit"
+    housekeeping: "173 Mbit"
+    total: "1589 Mbit"
+
+data_storage:
+
+  ssr_capacity_raw: "32 Gbit"
+  edac_overhead: "20 %"
+  ssr_capacity_usable: "25.6 Gbit"
+  days_of_storage: 16
+  notes: >
+    Solid-state recorder can buffer approximately 16 days of science and
+    housekeeping data (25600 / 1589 = 16.1 days). Provides margin for
+    missed DSN contacts or anomaly recovery.
+
+downlink_strategy:
+
+  antenna: "HGA (1.5 m parabolic)"
+  transponder: "SDST + TWTA (25 W RF)"
+  dsn_antenna: "34 m BWG"
+  frequency_band: "X-band (8.425 GHz)"
+
+  average_mars_distance: "1.5 AU"
+  downlink_rate_at_avg_distance: "250 kbps"
+  dsn_contact_hours_per_day: 8
+  daily_downlink_volume: "7200 Mbit"
+
+  near_mars_distance: "0.7 AU"
+  downlink_rate_near: "1.0 Mbps"
+  daily_downlink_near: "28800 Mbit"
+
+  far_mars_distance: "2.6 AU"
+  downlink_rate_far: "50 kbps"
+  daily_downlink_far: "1440 Mbit"
+
+  notes: >
+    Downlink rates are selectable per the SDST rate table. At average Mars
+    distance (1.5 AU) with 34m DSN antenna and 25 W TWTA, 250 kbps is
+    achievable with positive link margin. Rate scales approximately as
+    1/R^2. Eight hours of DSN contact per day is baselined for the science
+    phase (two 4-hour passes or one 8-hour pass).
+
+budget_closure:
+
+  daily_generation: "1589 Mbit"
+  daily_downlink_average: "7200 Mbit"
+  margin_factor: 4.5
+  daily_downlink_worst_case: "1440 Mbit"
+  worst_case_margin_factor: 0.91
+  notes: >
+    At average Mars distance the data budget closes with 4.5x margin,
+    providing ample room for retransmissions and operational overhead.
+    At worst-case distance (2.6 AU, conjunction geometry excluded),
+    the budget is tight at 0.91x; science operations would be reduced
+    or data prioritized during far-Mars periods. Near solar conjunction
+    (Sun-Earth-Probe angle < 3 deg), downlink is suspended and the SSR
+    buffers data for up to 16 days.

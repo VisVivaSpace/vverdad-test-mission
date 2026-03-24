@@ -1,0 +1,57 @@
+# Thermal Control Summary — Phobos Sample Return
+# CML-4 point design. Hot/cold case analysis at Mars orbit.
+# Box-type bus, solar-powered, bipropellant propulsion (MMH/NTO).
+
+# ─── General Design Parameters ───
+
+[design]
+mli_coverage = "85 %"                           # Percentage of bus exterior covered by MLI
+mli_effective_emittance = 0.03                   # Typical flight blanket, moderate complexity
+radiator_area = "1.8 m^2"                        # Two body-mounted radiator panels
+radiator_emissivity = 0.85                       # White paint (AZ-93) BOL
+radiator_absorptivity = 0.14                     # AZ-93 solar absorptivity BOL
+radiator_absorptivity_eol = 0.28                 # AZ-93 degraded after 3-year mission
+radiator_coating = "AZ-93 white paint"
+solar_flux_mars_perihelion = "717 W/m^2"         # Mars perihelion ~1.38 AU
+solar_flux_mars_aphelion = "493 W/m^2"           # Mars aphelion ~1.66 AU
+
+# ─── Hot Case ───
+
+[hot_case]
+condition = "Mars perihelion, sun-facing attitude, all electronics and instruments on, EOL surface properties"
+
+battery_temperature = "303 K"
+battery_max_allowable = "318 K"                  # 15 K margin
+
+propellant_tank_temperature = "305 K"            # MMH/NTO bipropellant
+propellant_tank_max_allowable = "325 K"          # 20 K margin
+
+electronics_temperature = "308 K"
+electronics_max_allowable = "323 K"              # 15 K margin
+
+payload_temperature = "298 K"                    # WAC and GRNS nominal
+payload_max_allowable = "313 K"                  # 15 K margin
+
+internal_dissipation = "750 W"                   # All subsystems active, peak science ops
+
+# ─── Cold Case ───
+
+[cold_case]
+condition = "Mars aphelion, eclipse behind Mars, minimum power mode, BOL surface properties"
+
+battery_temperature = "278 K"
+battery_min_allowable = "273 K"                  # 5 K margin
+
+propellant_tank_temperature = "280 K"            # Maintained above MMH freezing (220 K) with margin
+propellant_tank_min_allowable = "275 K"          # 5 K margin
+
+electronics_temperature = "258 K"
+electronics_min_allowable = "253 K"              # 5 K margin
+
+payload_temperature = "263 K"                    # Instruments off, survival heating
+payload_min_allowable = "253 K"                  # 10 K margin
+
+heater_power_required = "120 W"                  # Survival heaters: tanks, battery, bus
+eclipse_duration = "75 min"                      # Worst-case Mars orbit eclipse (from power budget)
+
+internal_dissipation = "200 W"                   # C&DH, telecom keep-alive, heaters only
