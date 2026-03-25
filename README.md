@@ -12,7 +12,7 @@ See the [VVERDAD prototype repository](https://github.com/VisVivaSpace/vverdad-p
 
 ## Mission Overview
 
-A NASA New Frontiers-class Phobos Sample Return mission:
+Example Phobos Sample Return mission:
 
 - **Launch**: ~2035, Falcon Heavy expendable, direct ballistic transfer to Mars
 - **Mars operations**: Orbit insertion, transfer to Phobos quasi-satellite orbit (QSO)
@@ -20,7 +20,7 @@ A NASA New Frontiers-class Phobos Sample Return mission:
 - **Sample collection**: Harpoon-based touch-and-go (TAG) maneuver
 - **Return**: Earth return cruise, rendezvous with lunar Gateway station (no aeroshell)
 
-Two instruments plus a sample collection system. Heritage drawn from JAXA MMX.
+Two instruments plus a sample collection system. Inspiration drawn from JAXA MMX.
 
 ## Repository Structure
 
